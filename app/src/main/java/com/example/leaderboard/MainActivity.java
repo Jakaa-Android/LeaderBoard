@@ -27,37 +27,58 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
+    private ApiClient mApiClient;
 
-    private Toolbar toolbar;
+   private Toolbar toolbar;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+   private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Api api = ApiClient.buildService(Api.class);
+        Call<List<Hero>> heroes = api.getHeroes();
+        heroes.enqueue(new Callback<List<Hero>>() {
+            @Override
+            public void onResponse(Call<List<Hero>> call, Response<List<Hero>> response) {
+                List<Hero> body=response.body();
+                if(body !=null){
+                    for(Hero hero:body){
+                        Log.d("TAG","onRensponse"+hero.getName() +":"+hero.getHours());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Hero>> call, Throwable t) {
+                Log.d("TAG","onFailure");
+
+
+            }
+        });
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
+       getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+       setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TopLearnersFragment(), "Learning Leaders");
-        adapter.addFragment(new SkillIqFragment(), "Skill IQ Leaders");
-
-        viewPager.setAdapter(adapter);
-
+   private void setupViewPager(ViewPager viewPager) {
+      ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+       adapter.addFragment(new TopLearnersFragment(), "Learning Leaders");
+      adapter.addFragment(new SkillIqFragment(), "Skill IQ Leaders");
+    viewPager.setAdapter(adapter);
 
     }
+
 
 
 
