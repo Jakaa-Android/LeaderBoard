@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 
 public interface Api {
-    @GET(.getString(R.string.name))
+    @GET("api/hours")
      Call<List<Hero>> getHeroes();
     
     

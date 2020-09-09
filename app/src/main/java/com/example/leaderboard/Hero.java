@@ -7,7 +7,7 @@ public class Hero {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("score")
+    @SerializedName("hours")
     private String hours;
 
     @SerializedName("country")

@@ -2,6 +2,7 @@ package com.example.leaderboard;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -10,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -76,8 +79,16 @@ public class MainActivity extends AppCompatActivity {
        adapter.addFragment(new TopLearnersFragment(), "Learning Leaders");
       adapter.addFragment(new SkillIqFragment(), "Skill IQ Leaders");
     viewPager.setAdapter(adapter);
-
     }
+    final RecyclerView recyclerLeaners=(RecyclerView) findViewById(R.id.list_Hero);
+    final LinearLayoutManager LeanersLayoutManager=new LinearLayoutManager(this);
+    recyclerLearners.setLayoutManager(notesLayoutManager);
+
+    List<LearnerInfo> notes = DataManager.getInstance().getNotes();
+    final RecyclerViewAdapter learnerRecylerAdapter=new NoteRecylerAdapter();
+    reyclerLearners.setAdapter(noteRecyclerAdapter);
+
+
 
 
 
