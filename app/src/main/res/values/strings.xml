@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">LeaderBoard</string>
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+
+    </style>
+
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="fragment_top_Leaders">Learner Leaders</string>
+    <string name="fragment_skill_iq">Skill Iq</string>
+    <string name="learner_leaders">Learner Leaders</string>
+    <string name="skill_iq">Skill Iq</string>
+    <string name="hours">heroes</string>
+    <string name="name">hours/{Learning_Leaders}</string>
+
+</resources>
